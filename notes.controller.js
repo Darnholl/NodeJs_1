@@ -30,15 +30,13 @@ async function removeNotes(id) {
 }
 async function editNotes(id, value) {
   const notes = await getNotes();
-  console.log(notes);
-  // const newNotes = notes.map((n) => {
-  //   if (n.id === id) {
-  //     n.title = value;
-  //   }
-  // });
+  // console.log(notes);
+  const newNotes = notes.map((note) =>
+    note.id === id ? { ...note, title: value } : note
+  );
   // console.log(newNotes);
-  // await fs.writeFile(notesPath, JSON.stringify(newNotes));
-  // console.log(chalk.bgRed("Note was edited!"));
+  await fs.writeFile(notesPath, JSON.stringify(newNotes));
+  console.log(chalk.bgRed("Note was edited!"));
 }
 
 async function printNotes() {

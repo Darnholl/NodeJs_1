@@ -44,9 +44,8 @@ app.post("/", async (req, res) => {
 
 // Редактирование
 app.put("/:id", async (req, res) => {
-  console.log(req.params.id, req.body);
-  // await editNotes(req.params.id, req.body);
-  // console.log(test);
+  // console.log(req.params.id, req.body.value);
+  await editNotes(req.params.id, req.body.value);
   res.render("index", {
     title: " Express app",
     notes: await getNotes(),

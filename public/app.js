@@ -10,15 +10,15 @@ document.addEventListener("click", (event) => {
 document.addEventListener("click", (event) => {
   if (event.target.dataset.type === "edit") {
     const id = event.target.dataset.id;
-    let testPrompt = prompt("Пробуем изменить", "введи текст");
-    edit(id, testPrompt)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-    // if (testPrompt) {
-    //   alert(`good ${testPrompt}`);
-    // } else if (!testPrompt) {
-    //   alert(`false ${typeof testPrompt}`);
-    // }
+    let testPrompt = prompt("Изменим название?", "На какое? напиши здесь");
+    if (testPrompt) {
+      edit(id, testPrompt).then(() => {
+        // event.target.closest("li").outerHTML = testPrompt;
+        document.getElementById(id).textContent = testPrompt;
+      });
+    } else if (!testPrompt) {
+      alert(`Отмена редактирования`);
+    }
   }
 });
 
@@ -34,6 +34,6 @@ async function edit(id, value) {
       Accept: "application/json",
       "Content-Type": "application/json;charset=utf-8",
     },
-    body: JSON.stringify(value),
+    body: JSON.stringify({ value }),
   });
 }
