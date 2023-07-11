@@ -28,6 +28,18 @@ async function removeNotes(id) {
   await fs.writeFile(notesPath, JSON.stringify(newNotes));
   console.log(chalk.bgRed("Note was removed!"));
 }
+async function editNotes(id, value) {
+  const notes = await getNotes();
+  console.log(notes);
+  // const newNotes = notes.map((n) => {
+  //   if (n.id === id) {
+  //     n.title = value;
+  //   }
+  // });
+  // console.log(newNotes);
+  // await fs.writeFile(notesPath, JSON.stringify(newNotes));
+  // console.log(chalk.bgRed("Note was edited!"));
+}
 
 async function printNotes() {
   const notes = await getNotes();
@@ -38,6 +50,7 @@ async function printNotes() {
 
 module.exports = {
   addNote,
-  printNotes,
+  getNotes,
   removeNotes,
+  editNotes,
 };
